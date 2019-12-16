@@ -1,0 +1,12 @@
+const ActionTypes = {
+    SHOW_ALERT: 'SHOW_ALERT',
+    HIDE_ALERT: 'HIDE_ALERT',
+    CLEAR_USERS: 'CLEAR_USERS',
+    CLEAR_REPOS: 'CLEAR_REPOS',
+    GET_USER: 'GET_USER',
+    GET_REPOS: 'GET_REPOS',
+    SEARCH_USERS: 'SEARCH_USERS',
+    SET_LOADING: 'SET_LOADING'
+};
+
+export default ActionTypes;
