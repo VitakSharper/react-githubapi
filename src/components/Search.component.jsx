@@ -15,16 +15,20 @@ const useStyles = makeStyles(theme => ({
 
 export const Search = () => {
     const classes = useStyles();
-    const {show} = useContext(AlertContext);
-    const {searchUser} = useContext(GithubContext);
+    const {show, hide} = useContext(AlertContext);
+    const {searchUser, clearUsers} = useContext(GithubContext);
     const [searchValue, setSearchValue] = useState('');
 
     const onSubmit = event => {
         if (event.key !== 'Enter') {
             return;
         }
+
+        clearUsers();
+
         if (searchValue.trim()) {
-            searchUser(searchValue)
+            hide();
+            searchUser(searchValue.trim())
         } else {
             show('Enter user data')
         }
@@ -34,7 +38,7 @@ export const Search = () => {
         <div>
             <div className={classes.root}>
                 <TextField
-                    label="Enter your name please..."
+                    label="Enter the Github login..."
                     variant="outlined"
                     onKeyPress={onSubmit}
                     value={searchValue}

@@ -1,6 +1,15 @@
 import React from "react";
 import {withRouter} from 'react-router-dom';
-import {Card, CardContent, CardMedia, Typography, CardActions, Button, makeStyles} from "@material-ui/core";
+import {
+    Card,
+    CardContent,
+    CardMedia,
+    CardActionArea,
+    Typography,
+    CardActions,
+    Button,
+    makeStyles
+} from "@material-ui/core";
 
 
 const useStyles = makeStyles({
@@ -15,29 +24,35 @@ const useStyles = makeStyles({
     },
     media: {
         height: 140,
+        transition: 'all 6s cubic-bezier(0.25, 0.45, 0.45, 0.95)',
+        '&:hover': {
+            transform: 'scale(1.1)'
+        }
     },
     title: {
         fontSize: 14,
     },
-
 
 });
 const UserCard = ({user, history}) => {
     const classes = useStyles();
     return (
         <Card className={classes.card}>
-            <CardMedia
-                className={classes.media}
-                image={user.avatar_url}
-                title="Contemplative Reptile"
-            />
+            <CardActionArea>
+                <CardMedia
+                    className={classes.media}
+                    image={user.avatar_url}
+                    title={user.login}
+                    onClick={() => history.push(`/profile/${user.login}`)}
+                />
+            </CardActionArea>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="h2" className={classes.title} color="textSecondary">
                     {user.login}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant={"outlined"} size="small" onClick={() => history.push(`/profile/${user.login}`)}>Learn
+                <Button variant={"outlined"} size="small">Learn
                     More</Button>
             </CardActions>
         </Card>

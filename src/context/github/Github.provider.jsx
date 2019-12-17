@@ -35,7 +35,7 @@ export const GithubProvider = ({children}) => {
     const getUser = async name => {
         setLoading();
         try {
-            const resp = await axios.get(`${API_URL}users/${name}&${QUERY_PARAMS}`);
+            const resp = await axios.get(`${API_URL}users/${name}?${QUERY_PARAMS}`);
             dispatch({
                 type: ActionTypes.GET_USER,
                 payload: resp.data
